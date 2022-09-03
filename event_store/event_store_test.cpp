@@ -20,9 +20,9 @@ TEST_CASE("a single event can be written and then read") {
 TEST_CASE("can read specific events by id") {
   wh::event_store es;
 
-  const wh::event_id first_id = es.write(wh::event_data{"first"});
-  const wh::event_id second_id = es.write(wh::event_data{"second"});
+  const wh::event_id first_id = es.write(wh::event_data{});
+  const wh::event_id second_id = es.write(wh::event_data{});
 
-  CHECK(es.read(first_id).data == wh::event_data{"first"});
-  CHECK(es.read(second_id).data == wh::event_data{"second"});
+  CHECK(es.read(first_id).id == first_id);
+  CHECK(es.read(second_id).id == second_id);
 }
